@@ -7,9 +7,9 @@
 
 // Use vectors called "chunks"
 #define BitsPerChunk 256
-typedef int v4si __attribute__ ((vector_size (BitsPerChunk/8)));
+typedef int vec __attribute__ ((vector_size (BitsPerChunk/8)));
 typedef union {
-  v4si v;
+  vec bits;
   uint64_t elem[BitsPerChunk/64];
 } Chunk;
 
@@ -108,12 +108,12 @@ uint64_t ssp()
         uint32_t n = neighbours[i][j];
         // For each chunk
         for (int k = 0; k < numChunks; k++)
-          reachingNext[i][k].v = reachingNext[i][k].v | reaching[n][k].v;
+          reachingNext[i][k].bits |= reaching[n][k].bits;
       }
       // Update sums
       for (int k = 0; k < numChunks; k++) {
         Chunk diff;
-        diff.v = reachingNext[i][k].v & ~reaching[i][k].v;
+        diff.bits = reachingNext[i][k].bits & ~reaching[i][k].bits;
         uint32_t n = 0;
         for (int c = 0; c < BitsPerChunk/64; c++)
           n += __builtin_popcountll(diff.elem[c]);
@@ -127,7 +127,7 @@ uint64_t ssp()
     for (int i = 0; i < numNodes; i++) {
       uint32_t n = 0;
       for (int k = 0; k < numChunks; k++) {
-        reaching[i][k].v = reachingNext[i][k].v;
+        reaching[i][k].bits = reachingNext[i][k].bits;
         for (int c = 0; c < BitsPerChunk/64; c++)
           n += __builtin_popcountll(reaching[i][k].elem[c]);
       }
