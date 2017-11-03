@@ -14,6 +14,10 @@ Time = 0.004995
 Sum of shortest paths = 6759254
 Time = 0.003320
 
+> ./hasp Networks/n4.edges
+Sum of shortest paths = 6759254
+Time = 0.0240s
+
 > ./casp Networks/n5.edges
 Sum of shortest paths = 31710430
 Time = 0.024734
@@ -21,4 +25,8 @@ Time = 0.024734
 > ./caspv Networks/n5.edges
 Sum of shortest paths = 31710430
 Time = 0.013122
+
+> ./hasp Networks/n5.edges
+Sum of shortest paths = 31710430
+Time = 0.0920s
 ```
