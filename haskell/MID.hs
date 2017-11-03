@@ -1,4 +1,4 @@
-module DFS (Graph, Vertex, ssp, asp) where
+module MID (Graph, Vertex, ssp, asp) where
 
 import Data.Bits
 import Data.Array
@@ -6,10 +6,8 @@ import Transpose
 
 -- Graphs
 
-type Graph = Array Vertex [Vertex]
-
--- In range 0 .. |V|-1
 type Vertex = Int 
+type Graph = Array Vertex [Vertex]
 
 -- Sets
 
@@ -39,19 +37,19 @@ dfs :: Graph -> Int -> Vertex -> Set
 dfs g 0 v = singleton v
 dfs g d v = combine g (dfs g (d-1)) v
 
--- Iterative deepening
+-- Memoised iterative deepening
 
-table :: [Set] -> Array Vertex Set
-table ss = listArray (0, length ss - 1) ss
+toArray :: [Set] -> Array Vertex Set
+toArray ss = listArray (0, length ss - 1) ss
 
 initial :: Graph -> Array Vertex Set
-initial g = table (map singleton (indices g))
+initial g = toArray (map singleton (indices g))
 
 step :: Graph -> Array Vertex Set -> Array Vertex Set
-step g l = table (map (combine g (l !)) (indices g))
+step g l = toArray (map (combine g (l !)) (indices g))
 
-levels :: Graph -> [Array Vertex Set]
-levels g = iterate (step g) (initial g)
+levels :: Graph -> [[Set]]
+levels g = map elems (iterate (step g) (initial g))
 
 -- Average shortest path
 
@@ -62,7 +60,7 @@ total :: [Set] -> Int
 total = sum . zipWith (*) [1..] . diffs . map size
 
 ssp :: Graph -> Int
-ssp = sum . map total . transpose . map elems . levels
+ssp = sum . map total . transpose . levels
 
 asp :: Graph -> Double
 asp g = fromIntegral (ssp g) / fromIntegral (n*(n-1))

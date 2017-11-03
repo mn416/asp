@@ -1,9 +1,5 @@
---import BFSDataSet
---import BFSBitSet
-import DFS
---import DFSDataSet
---import BFSNew
---import BFSQuick
+--import BFS
+import MID
 import Data.Set
 import Data.Array
 import System.CPUTime
@@ -34,7 +30,7 @@ main = do
   g <- readGraph filename
   evaluate (rnf g)
   start <- getCPUTime
-  print (ssp g)
+  putStr "Sum of shortest paths = " >> print (ssp g)
   finish <- getCPUTime
   let duration = fromInteger (finish - start) / 1000000000000
-  printf "Time: %.04fs\n" (duration :: Double)
+  printf "Time = %.04fs\n" (duration :: Double)

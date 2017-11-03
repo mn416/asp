@@ -1,10 +1,18 @@
-all: asp-scalar asp-vector
+all: casp caspv hasp
 
-asp-scalar: asp-scalar.c
-	gcc -O3 asp-scalar.c -mpopcnt -o asp-scalar
+casp:
+	make -C C casp
+	cp C/casp .
 
-asp-vector: asp-vector.c
-	gcc -O3 asp-vector.c -mavx -mpopcnt -o asp-vector
+caspv: 
+	make -C C caspv
+	cp C/caspv .
+
+hasp:
+	make -C Haskell hasp
+	cp Haskell/hasp .
 
 clean:
-	rm -f asp-scalar asp-vector
+	make -C Haskell clean
+	make -C C clean
+	rm -rf casp caspv hasp

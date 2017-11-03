@@ -1,6 +1,4 @@
-{-# LANGUAGE BangPatterns #-}
-
-module BFSQuick (Graph, Vertex, ssp, asp) where
+module BFS (Graph, Vertex, ssp, asp) where
 
 import Data.Bits
 import Data.Array
@@ -45,7 +43,6 @@ toList = list 0
     list v s = [v | odd s] ++ list (v+1) (s `shiftR` 1)
 
 -- Breadth-first search
-
 
 type BFSState = (Set, Set)
 

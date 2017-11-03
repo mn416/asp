@@ -1,5 +1,5 @@
-Main: *.hs 
-	ghc --make -O2 Main.hs
+hasp: *.hs 
+	ghc --make -O2 Main.hs -o hasp
 
 clean:
-	rm -f Main *.o *.hi
+	rm -f hasp *.o *.hi
