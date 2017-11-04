@@ -1,10 +1,13 @@
-all: casp caspv
+all: casp caspv casp-bfs
 
-casp: asp-scalar.c
-	gcc -O3 asp-scalar.c -mpopcnt -o casp
+casp: casp.c
+	gcc -O3 casp.c -mpopcnt -o casp
 
-caspv: asp-vector.c
-	gcc -O3 asp-vector.c -mavx -mpopcnt -o caspv
+casp-bfs: casp-bfs.c
+	gcc -O3 casp-bfs.c -mpopcnt -o casp-bfs
+
+caspv: caspv.c
+	gcc -O3 caspv.c -mavx -mpopcnt -o caspv
 
 clean:
-	rm -f casp caspv
+	rm -f casp caspv casp-bfs

@@ -1,5 +1,5 @@
---import BFS
-import MID
+import BFS
+--import MID
 import Data.Set
 import Data.Array
 import System.CPUTime

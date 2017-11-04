@@ -1,4 +1,4 @@
-all: casp caspv hasp
+all: casp caspv casp-bfs hasp
 
 casp:
 	make -C C casp
@@ -8,6 +8,10 @@ caspv:
 	make -C C caspv
 	cp C/caspv .
 
+casp-bfs: 
+	make -C C caspv-bfs
+	cp C/caspv-bfs .
+
 hasp:
 	make -C Haskell hasp
 	cp Haskell/hasp .
@@ -15,4 +19,4 @@ hasp:
 clean:
 	make -C Haskell clean
 	make -C C clean
-	rm -rf casp caspv hasp
+	rm -rf casp caspv casp-bfs hasp

@@ -2,6 +2,7 @@ module BFS (Graph, Vertex, ssp, asp) where
 
 import Data.Bits
 import Data.Array
+import Data.IntSet as S
 
 -- Graphs
 
@@ -13,34 +14,7 @@ type Vertex = Int
 
 -- Sets
 
-type Set = Integer
-
-empty :: Set
-empty = 0
-
-singleton :: Vertex -> Set
-singleton v = 1 `shiftL` v
-
-size :: Set -> Int
-size = popCount
-
-union :: Set -> Set -> Set
-union = (.|.)
-
-unions :: [Set] -> Set
-unions = foldr union empty
-
-(\\) :: Set -> Set -> Set
-a \\ b = a .&. complement b
-
-fromList :: [Vertex] -> Set
-fromList = unions . map singleton
-
-toList :: Set -> [Vertex]
-toList = list 0
-  where
-    list v 0 = []
-    list v s = [v | odd s] ++ list (v+1) (s `shiftR` 1)
+type Set = S.IntSet
 
 -- Breadth-first search
 
