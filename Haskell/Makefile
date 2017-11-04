@@ -1,5 +1,10 @@
+all: hasp hasp-bfs
+
 hasp: *.hs 
-	ghc --make -O2 Main.hs -o hasp
+	ghc -cpp --make -O2 Main.hs -o hasp
+
+hasp-bfs: *.hs 
+	ghc -DUSE_BFS -cpp --make -O2 Main.hs -o hasp-bfs
 
 clean:
-	rm -f hasp *.o *.hi
+	rm -f hasp hasp-bfs *.o *.hi

@@ -1,5 +1,9 @@
+#ifdef USE_BFS
 import BFS
---import MID
+#else
+import MID
+#endif
+
 import Data.Set
 import Data.Array
 import System.CPUTime
