@@ -4,7 +4,7 @@ connectivity and low diameter.
 The various programs are:
 
 Program    | Description
----------- + -----------
+---------- | -----------
 `casp`     | C version using memoised iterative deepening
 `caspv`    | C version using memoised iterative deepening and Intel AVX vectors
 `casp-bfs` | C verison using repeated breadth-first search
