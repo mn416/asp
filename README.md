@@ -1,7 +1,5 @@
-Computes the average shortest path on a PC, for graphs with high
-connectivity and low diameter.
-
-The various programs are:
+Various programs to compute the average shortest path in an unweighted,
+undirected graph.
 
 Program    | Description
 ---------- | -----------
