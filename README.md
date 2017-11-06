@@ -34,7 +34,7 @@ Time = 0.113536
 
 > ./hasp-bfs Networks/n4.edges
 Sum of shortest paths = 6759254
-Time = 0.7400s
+Time = 2.6680s
 
 ### Network n5 ###
 
@@ -56,5 +56,5 @@ Time = 0.580013
 
 > ./hasp-bfs Networks/n5.edges
 Sum of shortest paths = 31710430
-Time = 6.7720s
+Time = 15.7320s
 ```
