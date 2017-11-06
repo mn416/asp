@@ -2,44 +2,34 @@ module BFS (Graph, Vertex, ssp, asp) where
 
 import Data.Bits
 import Data.Array
-import Data.IntSet as S
+import qualified Data.IntSet as S
 
 -- Graphs
 
-type Graph = Array Vertex [Vertex]
-type Graph' = Array Vertex Set
-
--- In range 0 .. |V|-1
 type Vertex = Int 
-
--- Sets
-
-type Set = S.IntSet
+type Graph = Array Vertex [Vertex]
 
 -- Breadth-first search
 
-type BFSState = (Set, Set)
+type BFSState = (S.IntSet, [Vertex])
 
-step :: Graph' -> BFSState -> BFSState
-step g (seen, fringe) = (seen', fringe')
+step :: Graph -> BFSState -> BFSState
+step g (seen, fringe) = foldl visit (seen, []) (concatMap (g!) fringe)
   where
-    seen'   = seen `union` fringe
-    fringe' = extend g fringe \\ seen'
+    visit (seen, fringe) v
+      | v `S.member` seen = (seen, fringe)
+      | otherwise         = (S.insert v seen, v:fringe)
 
-extend :: Graph' -> Set -> Set
-extend g = unions . fmap (g!) . toList
+bfs :: Graph -> Vertex -> [[Vertex]]
+bfs g x = fmap snd (iterate (step g) (S.singleton x, [x]))
 
-bfs :: Graph' -> Vertex -> [Set]
-bfs g x = fmap snd $ iterate (step g) (empty, singleton x)
-
-levels :: Graph -> [[Set]]
-levels g = fmap (bfs g') (indices g')
-  where g' = fmap fromList g
+levels :: Graph -> [[[Vertex]]]
+levels g = fmap (bfs g) (indices g)
 
 -- Average shortest path
 
-total :: [Set] -> Int
-total = sum . zipWith (*) [0..] . takeWhile (/= 0) . fmap size
+--total :: [Set] -> Int
+total = sum . zipWith (*) [0..] . takeWhile (/= 0) . fmap length
 
 ssp :: Graph -> Int
 ssp = sum . fmap total . levels
