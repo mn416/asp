@@ -1,5 +1,5 @@
-Various programs to compute the average shortest path in an unweighted,
-undirected graph.
+Various programs to compute the average shortest path in an unweighted
+graph.
 
 Program    | Description
 ---------- | -----------
