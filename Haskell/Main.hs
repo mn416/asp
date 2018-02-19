@@ -1,7 +1,11 @@
 #ifdef USE_BFS
 import BFS
 #else
+#ifdef USE_BFS2
+import BFS2
+#else
 import MID
+#endif
 #endif
 
 import Data.Set
