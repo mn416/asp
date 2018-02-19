@@ -19,7 +19,7 @@ bfs :: Graph -> Vertex -> [Array Vertex Bool]
 bfs g v = iterate step initial
   where
     initial = toArray [v == w | w <- indices g]
-    step rs = toArray [rs!w || any (rs!) (g!w) | w <- indices g]
+    step rs = toArray [any (rs!) (w:g!w) | w <- indices g]
 
 -- Count number of trues
 count :: Array Vertex Bool -> Int
