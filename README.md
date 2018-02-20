@@ -9,4 +9,9 @@ Program    | Description
 `hasp`     | Haskell version using memoised iterative deepening
 `hasp-bfs` | Haskell version using repeated breadth-first search
 
-[Here](asp-draft.pdf) is a paper describing the programs.
+Here is a paper we've written that describes the programs:
+[Functional Pearl: The unweighted average shortest path](asp-pearl.pdf).
+
+The networks included in this repo were provided by the authors of the
+paper [Language and Hardware Acceleration Backend for Graph
+Processing](https://github.com/tuura/papers/tree/master/fdl-2017).
