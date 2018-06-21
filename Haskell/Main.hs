@@ -1,13 +1,8 @@
-#ifdef USE_BFS
-import BFS
-#else
-#ifdef USE_BFS2
-import BFS2
-#else
-import MID
-#endif
+#ifndef _ALG_
+#define _ALG_ MID
 #endif
 
+import _ALG_
 import Data.Set
 import Data.Array
 import System.CPUTime
