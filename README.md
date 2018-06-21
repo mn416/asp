@@ -6,7 +6,7 @@ Program    | Description
 `casp`     | C version using memoised iterative deepening
 `caspv`    | C version using memoised iterative deepening and Intel AVX vectors
 `casp-bfs` | C verison using repeated breadth-first search
-`casph`    | C version using hybrid MID and repeated BFS
+`casph`    | C version using repeated MID hybrid
 `hasp`     | Haskell version using memoised iterative deepening
 `hasp-bfs` | Haskell version using repeated breadth-first search
 
